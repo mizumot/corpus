@@ -12,10 +12,10 @@ shinyServer(function(input, output){
     
     output$word.list <- renderTable({
         x <- input$text
-        x <- tolower(x) # 大文字を小文字に変換
+        x <- tolower(x)
         words <- unlist (strsplit (x, split = "[[:space:]]+|[[:punct:]]+"))
         Word <- words[words !=""]
-        Word.freq <- as.data.frame(table (Word)) #頻度表の作成
+        Word.freq <- as.data.frame(table (Word))
         Word.sorted <- Word.freq[order(Word.freq$Freq, decreasing = TRUE), ]
         return(Word.sorted)
     })
